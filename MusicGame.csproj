@@ -631,6 +631,7 @@
     <Compile Include="Assets\MidiJack\MidiMaster.cs" />
     <Compile Include="Assets\MidiJack\MidiStateUpdater.cs" />
     <Compile Include="Assets\Scripts\GenerateMap.cs" />
+    <Compile Include="Assets\Scripts\HUD.cs" />
     <Compile Include="Assets\Scripts\MidiManager.cs" />
     <Compile Include="Assets\Scripts\MidiRecorder.cs" />
     <Compile Include="Assets\Scripts\NoteTile.cs" />
