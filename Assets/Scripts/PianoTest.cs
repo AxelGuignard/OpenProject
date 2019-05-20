@@ -11,9 +11,14 @@ public class PianoTest : MonoBehaviour
     public AudioMixerGroup audioMixerGroup;
     private int pos;
 
+    public static PianoTest instance;
+    public bool init;
+
     // Start is called before the first frame update
     void Start()
     {
+        init = true;
+        instance = this;
         pos = 0;
         for(int i = 0; i < 12; i++)
         {
@@ -38,15 +43,35 @@ public class PianoTest : MonoBehaviour
     {
         if (velocity > 0f)
         {
-            Debug.Log("NoteOn: " + channel + "," + note + "," + velocity + "," + (0.0186f * Mathf.Exp(0.0578f * note)));
-            audioSource[pos%12].pitch = 0.0186f * Mathf.Exp(0.0578f * note);
-            audioSource[pos%12].Play();
-            pos++;
+            //Debug.Log("NoteOn: " + channel + "," + note + "," + velocity + "," + (0.0186f * Mathf.Exp(0.0578f * note)));
+            playNote(note);
         }
         else
         {
 
         }
+    }
+
+    public void playNote(int note)
+    {
+        if (init)
+        {
+            audioSource[pos % 12].pitch = 0.0186f * Mathf.Exp(0.0578f * note);
+            audioSource[pos % 12].Play();
+            pos++;
+        }
+        init = true;
+    }
+
+    public void playNote2(int note)
+    {
+        if (init)
+        {
+            audioSource[0].pitch = 0.0186f * Mathf.Exp(0.0578f * note);
+            audioSource[0].Play();
+            pos++;
+        }
+        init = true;
     }
 
     void MidiKeyOff(MidiChannel channel, int note)
