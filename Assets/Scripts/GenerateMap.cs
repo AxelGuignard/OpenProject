@@ -9,7 +9,8 @@ public enum EventType
     Monster,
     Loot,
     RightTurn,
-    LeftTurn
+    LeftTurn,
+    Jump
 }
 
 public class GenerateMap : MonoBehaviour
@@ -17,6 +18,7 @@ public class GenerateMap : MonoBehaviour
     public GameObject NoteBlock;
     public GameObject Block;
     public GameObject Wall;
+    public GameObject Fence;
     public GameObject Chest;
     public GameObject Enemy;
 
@@ -135,7 +137,7 @@ public class GenerateMap : MonoBehaviour
             Vector3 startPos = lastPos;
             GameObject startTmp = GameObject.Instantiate(NoteBlock, startPos, new Quaternion());
             startTmp.GetComponent<NoteTile>().note = track[i][1];
-            if(noteToEvent[tmpEvent] == EventType.Loot || noteToEvent[tmpEvent] == EventType.Monster)
+            if (noteToEvent[tmpEvent] == EventType.Loot || noteToEvent[tmpEvent] == EventType.Monster || noteToEvent[tmpEvent] == EventType.Jump)
             {
                 GameObject tmpWall1 = GameObject.Instantiate(Wall, startPos + tmpDirWalls + new Vector3(0, 1f, 0), new Quaternion());
                 GameObject tmpWall2 = GameObject.Instantiate(Wall, startPos - tmpDirWalls + new Vector3(0, 1f, 0), new Quaternion());
@@ -146,11 +148,16 @@ public class GenerateMap : MonoBehaviour
                     tmpChest.transform.Rotate(0, -90f + (rotation % 4) * 90f, 0);
                     tmpChest.transform.SetParent(startTmp.transform.GetChild(0));
                 }
-                if (noteToEvent[tmpEvent] == EventType.Monster)
+                else if (noteToEvent[tmpEvent] == EventType.Monster)
                 {
                     GameObject tmpEnemy = GameObject.Instantiate(Enemy, startPos + Vector3.up * 0.5f, new Quaternion());
-                    //tmpEnemy.transform.Rotate(0, -90f + (rotation % 4) * 90f, 0);
                     tmpEnemy.transform.SetParent(startTmp.transform.GetChild(0));
+                }
+                else if (noteToEvent[tmpEvent] == EventType.Jump)
+                {
+                    GameObject tmpFence = GameObject.Instantiate(Fence, startPos + Vector3.up * 0.5f, new Quaternion());
+                    tmpFence.transform.Rotate(0,(rotation % 4) * 90f, 0);
+                    tmpFence.transform.SetParent(startTmp.transform.GetChild(0));
                 }
             }
 

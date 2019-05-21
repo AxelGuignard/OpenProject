@@ -18,6 +18,8 @@ public class PlayerMovements : MonoBehaviour
 
     public GameObject hitHud;
 
+    public GameObject stars;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,7 +60,10 @@ public class PlayerMovements : MonoBehaviour
     private void FixedUpdate()
     {
         if (isMoving)
+        {
             transform.position += transform.forward * 0.06f;
+            _animator.SetFloat("Speed", 1);
+        }
 
         Collider[] cols = Physics.OverlapBox(transform.position + transform.forward * 0.5f, Vector3.one * 0.05f, new Quaternion(), GenerateMap.NoteMask);
         if (cols.Length > 0)
@@ -86,6 +91,11 @@ public class PlayerMovements : MonoBehaviour
                     }
                     if (!lastCollider.GetComponentInParent<NoteTile>().hasBeenHit)
                     {
+                        if (GenerateMap.noteToEvent[tmpNote] == EventType.RightTurn || GenerateMap.noteToEvent[tmpNote] == EventType.LeftTurn)
+                        {
+                            _animator.SetTrigger("KnockOut");
+                            stars.SetActive(true);
+                        }
                         LoseCombo();
                     }
                     lastCollider.GetComponentInParent<NoteTile>().hasBeenHit = true;
@@ -127,15 +137,23 @@ public class PlayerMovements : MonoBehaviour
                 GenerateMap.score++;
                 HUD.SetScore(GenerateMap.score);
 
+                Debug.Log(col.transform.name);
+
                 col.transform.parent.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
 
                 if (GenerateMap.noteToEvent[tmpNote] == EventType.Loot)
                 {
                     col.GetComponentInChildren<Animator>().SetTrigger("Open");
+                    _animator.SetTrigger("Attack");
                 }
-                if(GenerateMap.noteToEvent[tmpNote] == EventType.Monster)
+                if (GenerateMap.noteToEvent[tmpNote] == EventType.Monster)
                 {
                     col.GetComponentInChildren<Enemy>().Die();
+                    _animator.SetTrigger("Attack");
+                }
+                if (GenerateMap.noteToEvent[tmpNote] == EventType.Jump)
+                {
+                    _animator.SetTrigger("Jump");
                 }
 
                 AddToCombo();

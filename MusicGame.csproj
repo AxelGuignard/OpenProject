@@ -658,6 +658,7 @@
     <Compile Include="Assets\Scripts\HitHUD.cs" />
     <Compile Include="Assets\Scripts\HomeMenu.cs" />
     <Compile Include="Assets\Scripts\HUD.cs" />
+    <Compile Include="Assets\Scripts\KnockStars.cs" />
     <Compile Include="Assets\Scripts\MainMenuGui.cs" />
     <Compile Include="Assets\Scripts\MainMenuManager.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
