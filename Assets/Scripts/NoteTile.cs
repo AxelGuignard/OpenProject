@@ -11,15 +11,19 @@ public class NoteTile : MonoBehaviour
     public Text noteText;
     public Transform anchor;
 
+    public static string[] notes = new string[12] { "A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#" };
+
     // Start is called before the first frame update
     void Start()
     {
+        noteText.text = notes[(note - 21) % 12] + (note - 21) / 12;
+
         if (note == 53)
-            noteText.text = "E";
+            noteText.text += "/E";
         if (note == 55)
-            noteText.text = "R";
+            noteText.text += "/R";
         if (note == 57)
-            noteText.text = "T";
+            noteText.text += "/T";
     }
 
     // Update is called once per frame

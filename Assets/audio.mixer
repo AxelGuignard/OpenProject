@@ -1,12 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!243 &-8794556631441243363
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: sounds
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 6755567e9ab7b1e48bcb859549ecf02a
+  m_Children: []
+  m_Volume: 43a9941365eea6144ac34681e47f2e08
+  m_Pitch: 50d42962c1f067d48ad31654e46aaaf3
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 2627093389431881061}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &-4833394224392063898
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sub
+  m_Name: music
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: f5df9c6274a336a48aae11822915e80c
   m_Children: []
@@ -15,7 +34,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -955410284447377187}
-  - {fileID: 4096878425298261970}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -54,6 +72,7 @@ AudioMixerController:
   - guids:
     - a6f1aede543b96845860290c5f41cb04
     - f5df9c6274a336a48aae11822915e80c
+    - 6755567e9ab7b1e48bcb859549ecf02a
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -68,6 +87,7 @@ AudioMixerGroupController:
   m_GroupID: a6f1aede543b96845860290c5f41cb04
   m_Children:
   - {fileID: -4833394224392063898}
+  - {fileID: -8794556631441243363}
   m_Volume: 9d8b6ce626e02f74e928a8074534e90c
   m_Pitch: 8b09f0ee1461d504b9caac52d3766c64
   m_Send: 00000000000000000000000000000000
@@ -106,19 +126,17 @@ AudioMixerSnapshotController:
     0004e67d584df044cb29282f08521aa5: 1
     d1ae14be87b7dfc45aafdf9b82bc3998: 727.4326
   m_TransitionOverrides: {}
---- !u!244 &4096878425298261970
+--- !u!244 &2627093389431881061
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_EffectID: f114588b710d5a947acbc9c6a20b9f3d
-  m_EffectName: Distortion
-  m_MixLevel: f419be2f0e7310e488aa2e4ea32e95d6
-  m_Parameters:
-  - m_ParameterName: Level
-    m_GUID: 58fc5831a44523649abe7683d17901f3
+  m_EffectID: 62ab341432780f34ea316b81eca66133
+  m_EffectName: Attenuation
+  m_MixLevel: 2f4f6f1d063445247b58290bf2b9c683
+  m_Parameters: []
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0

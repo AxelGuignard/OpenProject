@@ -9,7 +9,8 @@ public enum EventType
     Monster,
     Loot,
     RightTurn,
-    LeftTurn
+    LeftTurn,
+    Jump
 }
 
 public class GenerateMap : MonoBehaviour
@@ -17,6 +18,10 @@ public class GenerateMap : MonoBehaviour
     public GameObject NoteBlock;
     public GameObject Block;
     public GameObject Wall;
+    public GameObject Fence;
+    public GameObject Chest;
+    public GameObject Enemy;
+
     private List<int[]> track;
     private int BPM;
     public LayerMask noteMask;
@@ -24,6 +29,8 @@ public class GenerateMap : MonoBehaviour
     public static LayerMask NoteMask;
 
     public static int score = 0;
+    public static int combo = 0;
+
     public static Dictionary<int, EventType> noteToEvent;
 
     private Vector3 lastPos = new Vector3();
@@ -86,23 +93,6 @@ public class GenerateMap : MonoBehaviour
 
         PlayerMovements.refX = refX;
 
-        /*for (int i = 0; i < track.Count; i++)
-        {
-            int tmpNote = track[i][1];
-            if (!noteToEvent.ContainsKey(tmpNote))
-            {
-                int rnd = Random.Range(0, 4);
-                if (rnd == 0)
-                    noteToEvent.Add(tmpNote, EventType.Monster);
-                else if (rnd == 1)
-                    noteToEvent.Add(tmpNote, EventType.Loot);
-                else if (rnd == 2)
-                    noteToEvent.Add(tmpNote, EventType.LeftTurn);
-                else
-                    noteToEvent.Add(tmpNote, EventType.RightTurn);
-            }
-        }*/
-
         for(int j = 0; j < 4; j++)
         {
             Vector3 pos = lastPos + new Vector3(0, 0, 1) * (j);
@@ -113,8 +103,6 @@ public class GenerateMap : MonoBehaviour
         for (int i = 0; i < track.Count; i++)
         {
             int tmpEvent = track[i][1];
-
-            Debug.Log(noteToEvent[tmpEvent] + " : " + tmpEvent);
 
             if (noteToEvent[tmpEvent] == EventType.LeftTurn) rotation--;
             if (noteToEvent[tmpEvent] == EventType.RightTurn) rotation++;
@@ -149,11 +137,30 @@ public class GenerateMap : MonoBehaviour
             Vector3 startPos = lastPos;
             GameObject startTmp = GameObject.Instantiate(NoteBlock, startPos, new Quaternion());
             startTmp.GetComponent<NoteTile>().note = track[i][1];
-            if(noteToEvent[tmpEvent] == EventType.Loot || noteToEvent[tmpEvent] == EventType.Monster)
+            if (noteToEvent[tmpEvent] == EventType.Loot || noteToEvent[tmpEvent] == EventType.Monster || noteToEvent[tmpEvent] == EventType.Jump)
             {
                 GameObject tmpWall1 = GameObject.Instantiate(Wall, startPos + tmpDirWalls + new Vector3(0, 1f, 0), new Quaternion());
                 GameObject tmpWall2 = GameObject.Instantiate(Wall, startPos - tmpDirWalls + new Vector3(0, 1f, 0), new Quaternion());
+
+                if (noteToEvent[tmpEvent] == EventType.Loot)
+                {
+                    GameObject tmpChest = GameObject.Instantiate(Chest, startPos + Vector3.up * 0.5f, new Quaternion());
+                    tmpChest.transform.Rotate(0, -90f + (rotation % 4) * 90f, 0);
+                    tmpChest.transform.SetParent(startTmp.transform.GetChild(0));
+                }
+                else if (noteToEvent[tmpEvent] == EventType.Monster)
+                {
+                    GameObject tmpEnemy = GameObject.Instantiate(Enemy, startPos + Vector3.up * 0.5f, new Quaternion());
+                    tmpEnemy.transform.SetParent(startTmp.transform.GetChild(0));
+                }
+                else if (noteToEvent[tmpEvent] == EventType.Jump)
+                {
+                    GameObject tmpFence = GameObject.Instantiate(Fence, startPos + Vector3.up * 0.5f, new Quaternion());
+                    tmpFence.transform.Rotate(0,(rotation % 4) * 90f, 0);
+                    tmpFence.transform.SetParent(startTmp.transform.GetChild(0));
+                }
             }
+
             else if (noteToEvent[tmpEvent] == EventType.RightTurn)
             {
                 GameObject tmpWall1 = GameObject.Instantiate(Wall, startPos - tmpDir + new Vector3(0, 1f, 0), new Quaternion());
