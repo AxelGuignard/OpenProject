@@ -401,6 +401,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 6f317be4f669a6247a8947c37a5f14cc,
         type: 3}
+    - target: {fileID: 5236361721392203457, guid: 807a533fa87f6a0438bbad95991061b3,
+        type: 3}
+      propertyPath: m_Text
+      value: "\n<color=red>You need a piano keyboard to fully enjoy this game</color>\n\nHelp
+        Bob to collect treasures and avoid obstacles by playing the right note at
+        the right moment and try to reach the highest score! \n\nYou can also play
+        with a computer keyboard, but where is the fun? ; )\n\nEnjoy the game!"
+      objectReference: {fileID: 0}
     - target: {fileID: 5236361719469529612, guid: 807a533fa87f6a0438bbad95991061b3,
         type: 3}
       propertyPath: m_FontData.m_Font

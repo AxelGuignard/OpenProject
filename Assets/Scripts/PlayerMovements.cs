@@ -40,6 +40,10 @@ public class PlayerMovements : MonoBehaviour
         bool k53 = Input.GetKeyDown(KeyCode.E);
         bool k55 = Input.GetKeyDown(KeyCode.R);
         bool k57 = Input.GetKeyDown(KeyCode.T);
+        bool k59 = Input.GetKeyDown(KeyCode.Y);
+        bool k61 = Input.GetKeyDown(KeyCode.U);
+        bool k63 = Input.GetKeyDown(KeyCode.I);
+        bool k65 = Input.GetKeyDown(KeyCode.O);
         if (k53)
         {
             if (isMoving) PianoTest.instance.playNote2(53);
@@ -54,6 +58,26 @@ public class PlayerMovements : MonoBehaviour
         {
             if (isMoving) PianoTest.instance.playNote2(57);
             hitAKey(57);
+        }
+        else if (k59)
+        {
+            if (isMoving) PianoTest.instance.playNote2(59);
+            hitAKey(59);
+        }
+        else if (k61)
+        {
+            if (isMoving) PianoTest.instance.playNote2(61);
+            hitAKey(61);
+        }
+        else if (k63)
+        {
+            if (isMoving) PianoTest.instance.playNote2(63);
+            hitAKey(63);
+        }
+        else if (k65)
+        {
+            if (isMoving) PianoTest.instance.playNote2(65);
+            hitAKey(65);
         }
     }
 
