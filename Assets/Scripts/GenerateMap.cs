@@ -39,7 +39,7 @@ public class GenerateMap : MonoBehaviour
     void Start()
     {
         NoteMask = noteMask;
-        track = LoadTrack("good_track1_clean_full_event.csv");
+        track = LoadTrack("good_track2_clean_full_event.csv");
 
         //generateMap();
         generateMap2();

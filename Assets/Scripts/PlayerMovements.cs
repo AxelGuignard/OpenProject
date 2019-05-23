@@ -36,15 +36,34 @@ public class PlayerMovements : MonoBehaviour
         {
             SceneManager.LoadScene(GameScene.MainMenu.ToString());
         }
+        
+        bool k49 = Input.GetKeyDown(KeyCode.A);
+        bool k50 = Input.GetKeyDown(KeyCode.Z);
+        bool k52 = Input.GetKeyDown(KeyCode.E);
+        bool k53 = Input.GetKeyDown(KeyCode.R);
+        bool k55 = Input.GetKeyDown(KeyCode.T);
+        bool k57 = Input.GetKeyDown(KeyCode.Y);
+        bool k59 = Input.GetKeyDown(KeyCode.U);
+        bool k60 = Input.GetKeyDown(KeyCode.I);
+        bool k62 = Input.GetKeyDown(KeyCode.O);
+        bool k64 = Input.GetKeyDown(KeyCode.P);
 
-        bool k53 = Input.GetKeyDown(KeyCode.E);
-        bool k55 = Input.GetKeyDown(KeyCode.R);
-        bool k57 = Input.GetKeyDown(KeyCode.T);
-        bool k59 = Input.GetKeyDown(KeyCode.Y);
-        bool k61 = Input.GetKeyDown(KeyCode.U);
-        bool k63 = Input.GetKeyDown(KeyCode.I);
-        bool k65 = Input.GetKeyDown(KeyCode.O);
-        if (k53)
+        if (k49)
+        {
+            if (isMoving) PianoTest.instance.playNote2(49);
+            hitAKey(49);
+        }
+        else if (k50)
+        {
+            if (isMoving) PianoTest.instance.playNote2(50);
+            hitAKey(50);
+        }
+        else if (k52)
+        {
+            if (isMoving) PianoTest.instance.playNote2(52);
+            hitAKey(52);
+        }
+        else if (k53)
         {
             if (isMoving) PianoTest.instance.playNote2(53);
             hitAKey(53);
@@ -64,20 +83,20 @@ public class PlayerMovements : MonoBehaviour
             if (isMoving) PianoTest.instance.playNote2(59);
             hitAKey(59);
         }
-        else if (k61)
+        else if (k60)
         {
-            if (isMoving) PianoTest.instance.playNote2(61);
-            hitAKey(61);
+            if (isMoving) PianoTest.instance.playNote2(60);
+            hitAKey(60);
         }
-        else if (k63)
+        else if (k62)
         {
-            if (isMoving) PianoTest.instance.playNote2(63);
-            hitAKey(63);
+            if (isMoving) PianoTest.instance.playNote2(62);
+            hitAKey(62);
         }
-        else if (k65)
+        else if (k64)
         {
-            if (isMoving) PianoTest.instance.playNote2(65);
-            hitAKey(65);
+            if (isMoving) PianoTest.instance.playNote2(64);
+            hitAKey(64);
         }
     }
 

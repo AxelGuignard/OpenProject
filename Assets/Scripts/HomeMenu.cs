@@ -23,7 +23,6 @@ public class HomeMenu : Menu
     public Button DificultyBackButton;
 
     public GameObject MusicListPanel;
-    public Button Music1Button;
     public Button MusicListBackButton;
 
     // Start is called before the first frame update
@@ -38,7 +37,12 @@ public class HomeMenu : Menu
         PlayButton.onClick.AddListener(ShowDifficultyPanel);
         EasyButton.onClick.AddListener(EasyClick);
         MusicListBackButton.onClick.AddListener(MusicListBack);
-        Music1Button.onClick.AddListener(OnClickPlay);
+        Button[] musics = MusicListPanel.GetComponentsInChildren<Button>();
+        foreach (Button music in musics)
+        {
+            if (!music.gameObject.name.Equals("MusicListBack"))
+                music.onClick.AddListener(OnClickPlay);
+        }
     }
 
     // Update is called once per frame
