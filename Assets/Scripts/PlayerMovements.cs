@@ -20,6 +20,9 @@ public class PlayerMovements : MonoBehaviour
 
     public GameObject stars;
 
+    private int rotateSteps = 0;
+    private int rotateDir = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -104,8 +107,20 @@ public class PlayerMovements : MonoBehaviour
     {
         if (isMoving)
         {
-            transform.position += transform.forward * 0.06f;
+            transform.position += transform.forward * 0.15f;
             _animator.SetFloat("Speed", 1);
+        }
+
+        if(rotateSteps > 0)
+        {
+            transform.Rotate(0, 11.25f * rotateDir, 0);
+            transform.position += transform.right * 0.165f * rotateDir;
+            rotateSteps--;
+        }
+
+        if(GenerateMap.notesPlayed == GenerateMap.notesToPlay && GenerateMap.notesToPlay > 0)
+        {
+            GameOverMenu.SetFinalScore();
         }
 
         Collider[] cols = Physics.OverlapBox(transform.position + transform.forward * 0.5f, Vector3.one * 0.05f, new Quaternion(), GenerateMap.NoteMask);
@@ -126,11 +141,15 @@ public class PlayerMovements : MonoBehaviour
                     int tmpNote = lastCollider.GetComponentInParent<NoteTile>().note;
                     if (GenerateMap.noteToEvent[tmpNote] == EventType.RightTurn)
                     {
-                        transform.Rotate(0, 90, 0);
+                        //transform.Rotate(0, 90, 0);
+                        rotateDir = 1;
+                        rotateSteps = 8;
                     }
                     else if (GenerateMap.noteToEvent[tmpNote] == EventType.LeftTurn)
                     {
-                        transform.Rotate(0, -90, 0);
+                        //transform.Rotate(0, -90, 0);
+                        rotateDir = 1;
+                        rotateSteps = 8;
                     }
                     if (!lastCollider.GetComponentInParent<NoteTile>().hasBeenHit)
                     {
@@ -140,6 +159,7 @@ public class PlayerMovements : MonoBehaviour
                             stars.SetActive(true);
                         }
                         LoseCombo();
+                        GenerateMap.notesPlayed++;
                     }
                     lastCollider.GetComponentInParent<NoteTile>().hasBeenHit = true;
                     lastCollider.GetComponent<BoxCollider>().enabled = false;
@@ -180,8 +200,6 @@ public class PlayerMovements : MonoBehaviour
                 GenerateMap.score++;
                 HUD.SetScore(GenerateMap.score);
 
-                Debug.Log(col.transform.name);
-
                 col.transform.parent.GetChild(1).GetComponent<MeshRenderer>().enabled = false;
 
                 if (GenerateMap.noteToEvent[tmpNote] == EventType.Loot)
@@ -200,10 +218,13 @@ public class PlayerMovements : MonoBehaviour
                 }
 
                 AddToCombo();
+                GenerateMap.notesPlayed++;
             }
             else if(sNote.note != note && !sNote.hasBeenHit)
             {
+                sNote.hasBeenHit = true;
                 LoseCombo();
+                GenerateMap.notesPlayed++;
             }
             lastCollider.GetComponentInParent<NoteTile>().hasBeenHit = true;
         }

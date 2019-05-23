@@ -14,6 +14,8 @@ public class HUD : MonoBehaviour
 
     public AudioClip loseComboClip;
 
+    public GameObject GameOver;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -29,7 +29,21 @@ public class GenerateMap : MonoBehaviour
     public static LayerMask NoteMask;
 
     public static int score = 0;
-    public static int combo = 0;
+    public static int bestCombo = 0;
+    private static int _combo = 0;
+    public static int combo { get
+        {
+            return _combo;
+        }
+        set
+        {
+            if (value > bestCombo) bestCombo = value;
+            _combo = value;
+        }
+    }
+
+    public static int notesPlayed = 0;
+    public static int notesToPlay = 0;
 
     public static Dictionary<int, EventType> noteToEvent;
 
@@ -45,51 +59,17 @@ public class GenerateMap : MonoBehaviour
         generateMap2();
     }
 
-    private void generateMap()
-    {
-        int refX = track[0][1];
-        int oldPosX = refX;
-        int oldDuration = 0;
-
-        PlayerMovements.refX = refX;
-
-        for (int i = 0; i < track.Count; i++)
-        {
-            int posX = track[i][1];
-            int dir = (int)Mathf.Sign(posX - oldPosX);
-
-            for (int j = 0; j < Mathf.Abs(posX - oldPosX); j++)
-            {
-                Vector3 pos = new Vector3(oldPosX - refX + j * dir, 0, oldDuration * 2);
-                GameObject tmp = GameObject.Instantiate(Block, pos, new Quaternion());
-            }
-
-            oldPosX = posX;
-
-
-            Vector3 startPos = new Vector3(oldPosX - refX, 0, oldDuration * 2);
-            GameObject startTmp = GameObject.Instantiate(NoteBlock, startPos, new Quaternion());
-            startTmp.GetComponent<NoteTile>().note = track[i][1];
-
-            int duration = track[i][0] + 1;
-
-            for (int j = 1; j < (duration - oldDuration) * 2; j++)
-            {
-                Vector3 pos = new Vector3(oldPosX - refX, 0, oldDuration * 2 + j);
-                GameObject tmp = GameObject.Instantiate(Block, pos, new Quaternion());
-            }
-            oldDuration = duration;
-
-            //return;
-        }
-    }
-
     private void generateMap2()
     {
         int refX = track[0][1];
         int oldPosX = refX;
         int oldTime = 0;
         int rotation = 4000000;
+
+        combo = 0;
+        bestCombo = 0;
+        notesPlayed = 0;
+        notesToPlay = track.Count;
 
         PlayerMovements.refX = refX;
 
@@ -203,7 +183,7 @@ public class GenerateMap : MonoBehaviour
 
         BPM = int.Parse(firstLine[0]);
         int nbDiffNotes = int.Parse(firstLine[1]);
-        Time.fixedDeltaTime = 1.0F / BPM;
+        Time.fixedDeltaTime = 1.0F / ((BPM / 60f) * 20f);
 
         for(int i = 0; i < nbDiffNotes; i++)
         {
