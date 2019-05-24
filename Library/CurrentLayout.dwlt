@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 0
     width: 1536
     height: 781
-  m_MinSize: {x: 950, y: 544}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -448,9 +448,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 90390000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 7a19feffc6d6ffffdad6ffff4cecffff4eecffff0e3b0000
+      m_ExpandedIDs: 4c08fcffc409fcffee09fcff060afcff0c0afcff180afcff2a0afcff600afcff620afcff6ce5feff267dffff287dffff8c7fffff907fffff927fffff9abaffffe4c4ffffe8c4ffffeac4ffff0cc5ffffb2c6fffffcc6ffff0ec7ffff44c7ffff46c7ffff24efffff3e520000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -510,9 +510,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 461, y: 240.3685, z: 0}
+    m_Target: {x: 203.9925, y: 213.5875, z: 0}
     speed: 2
-    m_Value: {x: 461, y: 240.3685, z: 0}
+    m_Value: {x: 203.9925, y: 213.5875, z: 0}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -545,9 +545,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.19964895, y: 0.0014697036, z: -0.0002996469, w: 0.9798663}
   m_Size:
-    m_Target: 701.905
+    m_Target: 537.8608
     speed: 2
-    m_Value: 701.905
+    m_Value: 537.8608
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -636,20 +636,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 60
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts
   m_LastFoldersGridSize: 60
-  m_LastProjectPath: C:\Users\tensh\MusicGame
+  m_LastProjectPath: C:\Users\axelg\GitRepository\Open Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 11}
-    m_SelectedIDs: 583a0000
-    m_LastClickedID: 14936
-    m_ExpandedIDs: 000000000c38000000ca9a3b
+    scrollPos: {x: 0, y: 27}
+    m_SelectedIDs: e8370000
+    m_LastClickedID: 14312
+    m_ExpandedIDs: 00000000bc3700006439000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -677,7 +677,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000c380000
+    m_ExpandedIDs: 00000000bc370000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -705,7 +705,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c623000014270000c831000082260000d22a00004a650000be650000ac260000f4310000be300000c22d0000663c000024540000b09cffffbe2a000024ccebff542900004a290000c82b0000ca2b000056290000a02b000076840100948401000e2c0000242c0000c22e0000fe2f0000fc2c000092240000c8b2ffff942b0000000000006c4a0000
+    m_ExpandedInstanceIDs: c623000014270000c831000082260000d22a00004a650000be650000ac260000f4310000be300000c22d0000663c000024540000b09cffffbe2a000024ccebff542900004a290000c82b0000ca2b000056290000a02b000076840100948401000e2c0000242c0000c22e0000fe2f0000fc2c000092240000c8b2ffff942b0000000000006c4a00008e330000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

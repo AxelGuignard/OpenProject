@@ -148,7 +148,7 @@ public class PlayerMovements : MonoBehaviour
                     else if (GenerateMap.noteToEvent[tmpNote] == EventType.LeftTurn)
                     {
                         //transform.Rotate(0, -90, 0);
-                        rotateDir = 1;
+                        rotateDir = -1;
                         rotateSteps = 8;
                     }
                     if (!lastCollider.GetComponentInParent<NoteTile>().hasBeenHit)
