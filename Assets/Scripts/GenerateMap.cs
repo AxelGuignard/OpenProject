@@ -53,7 +53,18 @@ public class GenerateMap : MonoBehaviour
     void Start()
     {
         NoteMask = noteMask;
-        track = LoadTrack("good_track2_clean_full_event.csv");
+        switch (StaticData.Level)
+        {
+            case "ButtonMusic1":
+                track = LoadTrack("good_track1_clean_full_event.csv");
+                break;
+            case "ButtonMusic2":
+                track = LoadTrack("good_track2_clean_full_event.csv");
+                break;
+            default:
+                throw new Exception("No track selected");
+        }
+        
 
         //generateMap();
         generateMap2();

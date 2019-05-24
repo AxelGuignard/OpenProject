@@ -41,7 +41,10 @@ public class HomeMenu : Menu
         foreach (Button music in musics)
         {
             if (!music.gameObject.name.Equals("MusicListBack"))
+            {
+                StaticData.Level = music.gameObject.name;
                 music.onClick.AddListener(OnClickPlay);
+            }
         }
     }
 
