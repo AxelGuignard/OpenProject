@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -42,8 +43,7 @@ public class HomeMenu : Menu
         {
             if (!music.gameObject.name.Equals("MusicListBack"))
             {
-                StaticData.Level = music.gameObject.name;
-                music.onClick.AddListener(OnClickPlay);
+                music.onClick.AddListener(() => { OnClickPlay(music.gameObject.name); });
             }
         }
     }
@@ -54,8 +54,9 @@ public class HomeMenu : Menu
 
     }
 
-    private void OnClickPlay()
+    private void OnClickPlay(string level)
     {
+        StaticData.Level = level;
         SceneManager.LoadScene(GameScene.game.ToString());
     }
 
