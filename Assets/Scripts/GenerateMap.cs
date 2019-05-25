@@ -144,6 +144,7 @@ public class GenerateMap : MonoBehaviour
                 else if (noteToEvent[tmpEvent] == EventType.Monster)
                 {
                     GameObject tmpEnemy = GameObject.Instantiate(Enemy, startPos + Vector3.up * 0.5f, new Quaternion());
+                    tmpEnemy.transform.Rotate(0, (rotation % 4) * 90f, 0);
                     tmpEnemy.transform.SetParent(startTmp.transform.GetChild(0));
                 }
                 else if (noteToEvent[tmpEvent] == EventType.Jump)

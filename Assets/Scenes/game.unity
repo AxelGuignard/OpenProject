@@ -1173,7 +1173,7 @@ MonoBehaviour:
   Wall: {fileID: 4068201348840041898, guid: f865ebafb2a2d214eb13ba5e62fcde91, type: 3}
   Fence: {fileID: 7801472737554073440, guid: 8452b1d7f31ea9145af6a8507d1c8d5e, type: 3}
   Chest: {fileID: 8797644406891251182, guid: a2249d58036829442a82f2b43f51f178, type: 3}
-  Enemy: {fileID: 5394405457167233345, guid: 4bad5d8fab5b38f4aa5eac81c2da394f, type: 3}
+  Enemy: {fileID: 6726459812137762799, guid: e970da16ec577ba4bbeb4ce863f14eea, type: 3}
   noteMask:
     serializedVersion: 2
     m_Bits: 256
