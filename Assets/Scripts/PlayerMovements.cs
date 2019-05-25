@@ -20,8 +20,11 @@ public class PlayerMovements : MonoBehaviour
 
     public GameObject stars;
 
+    private float speed = 0;
     private int rotateSteps = 0;
+    private int currentRotateStep = 0;
     private int rotateDir = 0;
+    private float rotateSpeed = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +32,25 @@ public class PlayerMovements : MonoBehaviour
         MidiMaster.noteOnDelegate += MidiKeyOn;
         player = this;
         _animator = GetComponent<Animator>();
+
+        switch (StaticData.Difficulty)
+        {
+            case "EASY":
+                speed = 0.10F;
+                rotateSteps = 10;
+                rotateSpeed = 9.0F;
+                break;
+            case "NORMAL":
+                speed = 0.15F;
+                rotateSteps = 8;
+                rotateSpeed = 11.25F;
+                break;
+            case "HARD":
+                speed = 0.20F;
+                rotateSteps = 6;
+                rotateSpeed = 15.0F;
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -107,15 +129,29 @@ public class PlayerMovements : MonoBehaviour
     {
         if (isMoving)
         {
-            transform.position += transform.forward * 0.15f;
+            transform.position += transform.forward * speed;
             _animator.SetFloat("Speed", 1);
         }
 
-        if(rotateSteps > 0)
+        if(currentRotateStep > 0)
         {
-            transform.Rotate(0, 11.25f * rotateDir, 0);
-            transform.position += transform.right * 0.165f * rotateDir;
-            rotateSteps--;
+            float rotateOffset = 0F;
+            switch (StaticData.Difficulty)
+            {
+                case "EASY":
+                    rotateOffset = 0.1F;
+                    break;
+                case "NORMAL":
+                    rotateOffset = 0.165f;
+                    break;
+                case "HARD":
+                    rotateOffset = 0.230F;
+                    break;
+            }
+
+            transform.Rotate(0, rotateSpeed * rotateDir, 0);
+            transform.position += transform.right * rotateOffset * rotateDir;
+            currentRotateStep--;
         }
 
         if(GenerateMap.notesPlayed == GenerateMap.notesToPlay && GenerateMap.notesToPlay > 0)
@@ -143,13 +179,13 @@ public class PlayerMovements : MonoBehaviour
                     {
                         //transform.Rotate(0, 90, 0);
                         rotateDir = 1;
-                        rotateSteps = 8;
+                        currentRotateStep = rotateSteps;
                     }
                     else if (GenerateMap.noteToEvent[tmpNote] == EventType.LeftTurn)
                     {
                         //transform.Rotate(0, -90, 0);
                         rotateDir = -1;
-                        rotateSteps = 8;
+                        currentRotateStep = rotateSteps;
                     }
                     if (!lastCollider.GetComponentInParent<NoteTile>().hasBeenHit)
                     {

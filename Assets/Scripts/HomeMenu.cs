@@ -34,17 +34,20 @@ public class HomeMenu : Menu
         BackButton.onClick.AddListener(Back);
         panelInfo.SetActive(false);
         QuitButton.onClick.AddListener(onClickQuit);
+        Button[] difficulties = DificultyPanel.GetComponentsInChildren<Button>();
+        foreach (Button difficulty in difficulties)
+        {
+            if (!difficulty.gameObject.name.Equals("ButtonBack"))
+                difficulty.onClick.AddListener(() => { DifficultySelect(difficulty.gameObject.GetComponentInChildren<Text>().text); });
+        }
         DificultyBackButton.onClick.AddListener(DificutyBack);
         PlayButton.onClick.AddListener(ShowDifficultyPanel);
-        EasyButton.onClick.AddListener(EasyClick);
         MusicListBackButton.onClick.AddListener(MusicListBack);
         Button[] musics = MusicListPanel.GetComponentsInChildren<Button>();
         foreach (Button music in musics)
         {
             if (!music.gameObject.name.Equals("MusicListBack"))
-            {
-                music.onClick.AddListener(() => { OnClickPlay(music.gameObject.name); });
-            }
+                music.onClick.AddListener(() => { OnClickPlay(music.gameObject.GetComponentInChildren<Text>().text); });
         }
     }
 
@@ -56,7 +59,7 @@ public class HomeMenu : Menu
 
     private void OnClickPlay(string level)
     {
-        StaticData.Level = level;
+        StaticData.Level = level.ToUpper();
         SceneManager.LoadScene(GameScene.game.ToString());
     }
 
@@ -79,8 +82,9 @@ public class HomeMenu : Menu
         DificultyPanel.SetActive(false);
     }
 
-    private void EasyClick()
+    private void DifficultySelect(string difficulty)
     {
+        StaticData.Difficulty = difficulty.ToUpper();
         MusicListPanel.SetActive(true);
         DificultyPanel.SetActive(false);
     }

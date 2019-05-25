@@ -57,10 +57,10 @@ public class GenerateMap : MonoBehaviour
         NoteMask = noteMask;
         switch (StaticData.Level)
         {
-            case "ButtonMusic1":
+            case "AU CLAIR DE LA LUNE":
                 track = LoadTrack("good_track1_clean_full_event.csv");
                 break;
-            case "ButtonMusic2":
+            case "THE LOST WOODS":
                 track = LoadTrack("good_track2_clean_full_event.csv");
                 break;
             default:
