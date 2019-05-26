@@ -20,6 +20,15 @@ public class PauseMenu : Menu
         QuitButton.onClick.AddListener(OnClickQuit);
     }
 
+    public void ToggleMenu()
+    {
+        if (!gameObject.activeSelf)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
+        Toggle();
+    }
+
     // Update is called once per frame
     void Update()
     {

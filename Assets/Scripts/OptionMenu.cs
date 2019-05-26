@@ -44,6 +44,6 @@ public class OptionMenu : Menu
     private void SetSFXVolume(float v)
     {
         if (v < -18) v = -100;
-        audioMixer.SetFloat("SFXVolume", v);
+        audioMixer.SetFloat("SoundsVolume", v);
     }
 }

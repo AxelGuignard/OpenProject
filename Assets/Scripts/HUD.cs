@@ -16,6 +16,8 @@ public class HUD : MonoBehaviour
 
     public GameObject GameOver;
 
+    public PauseMenu pauseMenu;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,11 @@ public class HUD : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        bool pause = Input.GetKeyDown(KeyCode.Escape);
+        if (pause)
+        {
+            pauseMenu.ToggleMenu();
+        }
     }
 
     public static void SetScore(int scoreVal)

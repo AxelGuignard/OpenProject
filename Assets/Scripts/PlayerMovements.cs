@@ -56,12 +56,6 @@ public class PlayerMovements : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool quit = Input.GetKeyDown(KeyCode.Escape);
-        if (quit)
-        {
-            SceneManager.LoadScene(GameScene.MainMenu.ToString());
-        }
-        
         bool k49 = Input.GetKeyDown(KeyCode.A);
         bool k50 = Input.GetKeyDown(KeyCode.Z);
         bool k52 = Input.GetKeyDown(KeyCode.E);
